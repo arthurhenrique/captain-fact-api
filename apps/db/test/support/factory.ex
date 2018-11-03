@@ -19,6 +19,8 @@ defmodule DB.Factory do
   alias DB.Schema.Statement
   alias DB.Schema.Flag
   alias DB.Schema.ResetPasswordRequest
+  alias DB.Schema.Subscription
+  alias DB.Schema.Notification
 
   def user_factory do
     %User{
@@ -135,6 +137,14 @@ defmodule DB.Factory do
       user: build(:user),
       token: "TestToken-" <> random_string(8),
       source_ip: Enum.random([Faker.Internet.ip_v4_address(), Faker.Internet.ip_v6_address()])
+    }
+  end
+
+  def subscription_factory do
+    %Subscription{
+      user: build(:user),
+      video: build(:video),
+      scope: :video
     }
   end
 
